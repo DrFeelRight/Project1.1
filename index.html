@@ -32,7 +32,11 @@ body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(
 .logo-mark{font-family:var(--font-d);font-size:22px;font-weight:800;letter-spacing:-0.5px;color:var(--white);}
 .logo-mark span{color:var(--accent);}
 .logo-sub{font-family:var(--font-m);font-size:10px;color:var(--muted);letter-spacing:2px;text-transform:uppercase;margin-top:2px;}
-.nav{padding:20px 12px;flex:1;overflow-y:auto;}
+.nav{padding:20px 12px;flex:1;overflow-y:auto;scrollbar-width:thin;scrollbar-color:rgba(0,229,160,0.15) transparent;}
+.nav::-webkit-scrollbar{width:4px;}
+.nav::-webkit-scrollbar-track{background:transparent;}
+.nav::-webkit-scrollbar-thumb{background:rgba(0,229,160,0.15);border-radius:4px;}
+.nav::-webkit-scrollbar-thumb:hover{background:rgba(0,229,160,0.3);}
 .nav-section-label{font-family:var(--font-m);font-size:9px;letter-spacing:2.5px;text-transform:uppercase;color:var(--muted);padding:0 12px;margin:16px 0 8px;}
 .nav-section-label:first-child{margin-top:0;}
 .nav-item{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:8px;cursor:pointer;color:rgba(240,244,255,0.55);font-size:14px;font-weight:400;transition:all 0.2s;border:1px solid transparent;margin-bottom:2px;text-decoration:none;background:transparent;width:100%;text-align:left;font-family:var(--font-b);}
@@ -254,6 +258,35 @@ body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(
 .empty-text{font-family:var(--font-d);font-size:15px;font-weight:600;color:rgba(240,244,255,0.4);margin-bottom:6px;}
 .empty-sub{font-size:12px;color:var(--muted);}
 
+/* DCA INLINE EDIT */
+.btn-edit{background:rgba(77,157,224,0.12);color:var(--blue);border:1px solid rgba(77,157,224,0.2);font-size:12px;padding:6px 12px;border-radius:7px;cursor:pointer;font-family:var(--font-b);transition:all 0.2s;}
+.btn-edit:hover{background:rgba(77,157,224,0.22);}
+.dca-inline-edit{display:none;margin-top:12px;padding:14px;background:rgba(0,229,160,0.04);border:1px solid rgba(0,229,160,0.15);border-radius:10px;}
+.dca-inline-edit.open{display:block;animation:fadeUp 0.2s ease both;}
+.dca-edit-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px;}
+.dca-edit-label{font-family:var(--font-m);font-size:9px;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-bottom:4px;}
+.dca-edit-input{background:rgba(240,244,255,0.06);border:1px solid var(--border2);border-radius:7px;padding:8px 12px;color:var(--white);font-family:var(--font-b);font-size:13px;outline:none;width:100%;transition:border-color 0.2s;}
+.dca-edit-input:focus{border-color:rgba(0,229,160,0.4);background:rgba(0,229,160,0.04);}
+.dca-edit-input::placeholder{color:var(--muted);}
+.dca-edit-select{background:rgba(240,244,255,0.06);border:1px solid var(--border2);border-radius:7px;padding:8px 12px;color:var(--white);font-family:var(--font-b);font-size:13px;outline:none;width:100%;cursor:pointer;}
+.dca-edit-actions{display:flex;gap:8px;margin-top:8px;}
+/* DECISION SEARCH + SORT */
+.search-bar{background:rgba(240,244,255,0.04);border:1px solid var(--border2);border-radius:10px;padding:9px 14px;color:var(--white);font-family:var(--font-b);font-size:13px;outline:none;width:100%;transition:border-color 0.2s;margin-bottom:14px;}
+.search-bar:focus{border-color:rgba(0,229,160,0.3);}
+.search-bar::placeholder{color:var(--muted);}
+.sort-row{display:flex;align-items:center;gap:6px;margin-bottom:14px;flex-wrap:wrap;}
+.sort-lbl{font-family:var(--font-m);font-size:9px;color:var(--muted);letter-spacing:1px;text-transform:uppercase;}
+.sort-btn{font-family:var(--font-m);font-size:10px;padding:4px 10px;border-radius:6px;cursor:pointer;border:1px solid var(--border2);background:transparent;color:var(--muted);transition:all 0.15s;}
+.sort-btn:hover,.sort-btn.active{background:rgba(0,229,160,0.08);color:var(--accent);border-color:rgba(0,229,160,0.2);}
+/* CONFIRM BAR */
+.confirm-bar{background:rgba(255,77,109,0.07);border:1px solid rgba(255,77,109,0.2);border-radius:9px;padding:10px 14px;display:flex;align-items:center;justify-content:space-between;margin-top:8px;animation:fadeUp 0.2s ease;}
+.confirm-text{font-size:12px;color:rgba(255,77,109,0.9);}
+.confirm-actions{display:flex;gap:8px;}
+/* WATCHLIST FILTER ROW */
+.watch-filter-row{display:flex;gap:6px;margin-bottom:16px;flex-wrap:wrap;}
+/* DECISION DELETE BTN */
+.decision-del{opacity:0;background:rgba(255,77,109,0.1);border:1px solid rgba(255,77,109,0.2);color:var(--red);border-radius:6px;padding:2px 8px;font-size:11px;cursor:pointer;transition:all 0.15s;font-family:var(--font-b);flex-shrink:0;}
+.decision-item:hover .decision-del{opacity:1;}
 /* ANIMATIONS */
 @keyframes fadeUp{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:translateY(0);}}
 @keyframes slideIn{from{opacity:0;transform:translateX(20px);}to{opacity:1;transform:translateX(0);}}
@@ -525,6 +558,12 @@ body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(
     <div><div class="page-title">Watchlist</div><div class="page-subtitle" id="watch-sub">Prospective investments under research</div></div>
     <button class="btn btn-primary" onclick="openWatchModal()">+ Add to Watchlist</button>
   </div>
+  <div class="watch-filter-row">
+    <button class="sort-btn active" onclick="setWatchFilter('all',this)">All</button>
+    <button class="sort-btn" onclick="setWatchFilter('high',this)">High conviction</button>
+    <button class="sort-btn" onclick="setWatchFilter('med',this)">Researching</button>
+    <button class="sort-btn" onclick="setWatchFilter('low',this)">Early interest</button>
+  </div>
   <div class="watchlist-grid" id="watchlist-grid"></div>
   <div id="watchlist-empty" style="display:none;" class="card"><div class="empty-state"><div class="empty-icon">👁️</div><div class="empty-text">Watchlist is empty</div><div class="empty-sub">Add instruments you're researching before committing capital</div><button class="btn btn-primary" style="margin-top:20px;" onclick="openWatchModal()">+ Add First Watch</button></div></div>
 </section>
@@ -535,7 +574,17 @@ body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(
     <div><div class="page-title">Decision Log</div><div class="page-subtitle">Every investment decision recorded with rationale</div></div>
     <button class="btn btn-primary" onclick="openDecisionModal()">+ New Decision</button>
   </div>
-  <div class="card"><div class="card-header"><div class="card-title">Decision History</div></div><div class="decision-list" id="decision-list"></div></div>
+  <div class="card"><div class="card-header"><div class="card-title">Decision History</div><div id="decision-count" style="font-family:var(--font-m);font-size:11px;color:var(--muted)"></div></div>
+    <input class="search-bar" placeholder="🔍  Search by ticker, type, or rationale..." id="decision-search" oninput="renderDecisions()">
+    <div class="sort-row">
+      <span class="sort-lbl">Filter:</span>
+      <button class="sort-btn active" onclick="setDecisionFilter('all',this)">All</button>
+      <button class="sort-btn" onclick="setDecisionFilter('buy',this)">Buy</button>
+      <button class="sort-btn" onclick="setDecisionFilter('dca',this)">DCA</button>
+      <button class="sort-btn" onclick="setDecisionFilter('hold',this)">Hold</button>
+      <button class="sort-btn" onclick="setDecisionFilter('sell',this)">Sell</button>
+    </div>
+    <div class="decision-list" id="decision-list"></div></div>
 </section>
 
 <!-- ══ MONTHLY ══ -->
@@ -760,23 +809,84 @@ function renderDCA(){
   document.getElementById('dca-badge').textContent = activeDCA;
 
   grid.innerHTML = dcaList.map((d,i)=>{
-    const pct = d.target ? Math.round((d.deployed/d.target)*100) : 0;
+    const pct = d.target ? Math.min(100,Math.round((d.deployed/d.target)*100)) : 0;
     const isActive = d.status==='active';
-    return `<div class="dca-card ${isActive?'active-dca':''}">
+    const isPaused = d.status==='paused';
+    const statusColor = isActive?'var(--accent)':isPaused?'var(--gold)':'var(--muted)';
+    const statusLabel = isActive?'27 Mar 2026':isPaused?'Paused':'Setup pending';
+    return `<div class="dca-card ${isActive?'active-dca':''}" id="dca-card-${i}">
       ${isActive?'<div class="dca-status"></div>':''}
-      <div class="dca-card-header">
-        <div><div class="dca-ticker">${d.ticker}</div></div>
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;">
+        <div>
+          <div class="dca-ticker">${d.ticker}</div>
+          <div class="dca-name">${d.name}</div>
+        </div>
+        <span style="font-family:var(--font-m);font-size:9px;padding:3px 8px;border-radius:20px;background:rgba(240,244,255,0.06);color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-top:2px">${d.sleeve}</span>
       </div>
-      <div class="dca-name">${d.name}</div>
-      <div class="dca-amount">£${d.amount}<span style="font-size:14px;color:var(--muted)">/mo</span></div>
-      <div class="dca-freq">${d.sleeve}  ·  Day ${d.day} monthly  ·  ${d.platform}</div>
-      <div class="dca-progress-label"><span>Year progress</span><span>£${d.deployed.toLocaleString()} / £${d.target?d.target.toLocaleString():'—'}</span></div>
+      <div class="dca-amount">£${d.amount.toLocaleString()}<span style="font-size:14px;color:var(--muted)">/mo</span></div>
+      <div class="dca-freq">Day ${d.day} monthly  ·  ${d.platform}</div>
+      <div class="dca-progress-label" style="margin-top:12px;"><span>Year progress</span><span>£${d.deployed.toLocaleString()} / £${d.target?d.target.toLocaleString():'—'}</span></div>
       <div class="dca-progress"><div class="dca-progress-fill" style="width:${pct}%"></div></div>
-      <div class="dca-next"><div class="dca-next-label">Next purchase</div><div class="dca-next-date" style="color:${isActive?'var(--white)':'var(--gold)'}">${isActive?'27 Mar 2026':d.status==='pending'?'Setup pending':'Paused'}</div></div>
-      ${d.notes?`<div style="font-size:11px;color:var(--muted);margin-top:8px;font-style:italic">${d.notes}</div>`:''}
-      <div class="dca-actions" style="margin-top:12px;">
-        <button class="btn btn-ghost btn-sm" onclick="toggleDCAStatus(${i})">${isActive?'Pause':'Activate'}</button>
-        <button class="btn btn-danger btn-sm" onclick="deleteDCA(${i})">Remove</button>
+      <div class="dca-next"><div class="dca-next-label">Next purchase</div><div class="dca-next-date" style="color:${statusColor}">${statusLabel}</div></div>
+      ${d.notes?`<div style="font-size:11px;color:var(--muted);margin-top:8px;font-style:italic;line-height:1.4">${d.notes}</div>`:''}
+
+      <!-- ACTION BUTTONS -->
+      <div class="dca-actions" style="margin-top:14px;flex-wrap:wrap;">
+        <button class="btn-edit" onclick="toggleDCAEdit(${i})">✏ Edit</button>
+        <button class="btn btn-ghost btn-sm" onclick="toggleDCAStatus(${i})">${isActive?'⏸ Pause':isPaused?'▶ Resume':'▶ Activate'}</button>
+        <button class="btn btn-danger btn-sm" onclick="confirmDeleteDCA(${i})">✕ Remove</button>
+      </div>
+
+      <!-- CONFIRM DELETE BAR (hidden by default) -->
+      <div class="confirm-bar" id="confirm-del-${i}" style="display:none;">
+        <span class="confirm-text">Remove ${d.ticker} from schedule?</span>
+        <div class="confirm-actions">
+          <button class="btn btn-ghost btn-sm" onclick="cancelDeleteDCA(${i})">Cancel</button>
+          <button class="btn btn-danger btn-sm" onclick="deleteDCA(${i})">Yes, remove</button>
+        </div>
+      </div>
+
+      <!-- INLINE EDIT PANEL -->
+      <div class="dca-inline-edit" id="dca-edit-${i}">
+        <div style="font-family:var(--font-m);font-size:10px;color:var(--accent);letter-spacing:1px;text-transform:uppercase;margin-bottom:12px;">Edit Schedule</div>
+        <div class="dca-edit-row">
+          <div>
+            <div class="dca-edit-label">Monthly Amount (£)</div>
+            <input class="dca-edit-input" type="number" id="edit-amount-${i}" value="${d.amount}" min="1" placeholder="e.g. 250">
+          </div>
+          <div>
+            <div class="dca-edit-label">Annual Target (£)</div>
+            <input class="dca-edit-input" type="number" id="edit-target-${i}" value="${d.target||''}" placeholder="e.g. 3000">
+          </div>
+        </div>
+        <div class="dca-edit-row">
+          <div>
+            <div class="dca-edit-label">Pay Day (day of month)</div>
+            <input class="dca-edit-input" type="number" id="edit-day-${i}" value="${d.day}" min="1" max="28" placeholder="e.g. 27">
+          </div>
+          <div>
+            <div class="dca-edit-label">Platform</div>
+            <select class="dca-edit-select" id="edit-platform-${i}">
+              ${['T212 ISA','Trading 212','HL ISA','Vanguard','Coinbase','Chase','Other'].map(p=>`<option ${p===d.platform?'selected':''}>${p}</option>`).join('')}
+            </select>
+          </div>
+        </div>
+        <div class="dca-edit-row" style="grid-template-columns:1fr;">
+          <div>
+            <div class="dca-edit-label">Sleeve / Category</div>
+            <select class="dca-edit-select" id="edit-sleeve-${i}">
+              ${['Core ETF','EM Tilt','Defensive','Income','Speculative','Satellite'].map(s=>`<option ${s===d.sleeve?'selected':''}>${s}</option>`).join('')}
+            </select>
+          </div>
+        </div>
+        <div style="margin-bottom:10px;">
+          <div class="dca-edit-label">Notes</div>
+          <input class="dca-edit-input" id="edit-notes-${i}" value="${d.notes||''}" placeholder="Rationale for this DCA...">
+        </div>
+        <div class="dca-edit-actions">
+          <button class="btn btn-primary btn-sm" onclick="saveDCAEdit(${i})" style="flex:1;">Save Changes</button>
+          <button class="btn btn-ghost btn-sm" onclick="toggleDCAEdit(${i})">Cancel</button>
+        </div>
       </div>
     </div>`;
   }).join('');
@@ -784,26 +894,65 @@ function renderDCA(){
   // summary
   const summary = document.getElementById('dca-summary');
   const takeHome = 1979;
+  const activeDCATotal = dcaList.filter(d=>d.status==='active').reduce((s,d)=>s+d.amount,0);
   summary.innerHTML = `
     <div style="text-align:center;padding:16px;background:rgba(240,244,255,0.03);border-radius:10px;border:1px solid var(--border2);">
-      <div style="font-family:var(--font-m);font-size:10px;color:var(--muted);margin-bottom:6px">MONTHLY DCA</div>
-      <div style="font-family:var(--font-d);font-size:24px;font-weight:700;color:var(--accent)">£${totalMonthly}</div>
+      <div style="font-family:var(--font-m);font-size:10px;color:var(--muted);margin-bottom:6px">TOTAL SCHEDULED</div>
+      <div style="font-family:var(--font-d);font-size:24px;font-weight:700;color:var(--accent)">£${totalMonthly.toLocaleString()}</div>
+      <div style="font-family:var(--font-m);font-size:10px;color:var(--muted);margin-top:4px">${dcaList.length} instrument${dcaList.length!==1?'s':''}</div>
     </div>
     <div style="text-align:center;padding:16px;background:rgba(240,244,255,0.03);border-radius:10px;border:1px solid var(--border2);">
-      <div style="font-family:var(--font-m);font-size:10px;color:var(--muted);margin-bottom:6px">TAKE-HOME</div>
-      <div style="font-family:var(--font-d);font-size:24px;font-weight:700">£${takeHome.toLocaleString()}</div>
+      <div style="font-family:var(--font-m);font-size:10px;color:var(--muted);margin-bottom:6px">ACTIVE DCA</div>
+      <div style="font-family:var(--font-d);font-size:24px;font-weight:700;color:var(--accent)">£${activeDCATotal.toLocaleString()}</div>
+      <div style="font-family:var(--font-m);font-size:10px;color:var(--muted);margin-top:4px">${dcaList.filter(d=>d.status==='active').length} active schedules</div>
     </div>
     <div style="text-align:center;padding:16px;background:rgba(0,229,160,0.05);border-radius:10px;border:1px solid rgba(0,229,160,0.15);">
       <div style="font-family:var(--font-m);font-size:10px;color:var(--muted);margin-bottom:6px">SPENDING MONEY</div>
-      <div style="font-family:var(--font-d);font-size:24px;font-weight:700;color:var(--accent)">£${(takeHome-totalMonthly).toLocaleString()}</div>
+      <div style="font-family:var(--font-d);font-size:24px;font-weight:700;color:var(--accent)">£${(takeHome-activeDCATotal).toLocaleString()}</div>
+      <div style="font-family:var(--font-m);font-size:10px;color:var(--muted);margin-top:4px">from £${takeHome.toLocaleString()} take-home</div>
     </div>`;
 }
 
-function toggleDCAStatus(i){
-  dcaList[i].status = dcaList[i].status==='active'?'paused':'active';
+function toggleDCAEdit(i){
+  const panel = document.getElementById(`dca-edit-${i}`);
+  panel.classList.toggle('open');
+}
+
+function saveDCAEdit(i){
+  const newAmount  = parseFloat(document.getElementById(`edit-amount-${i}`).value);
+  const newTarget  = parseFloat(document.getElementById(`edit-target-${i}`).value)||null;
+  const newDay     = parseInt(document.getElementById(`edit-day-${i}`).value)||27;
+  const newPlatform= document.getElementById(`edit-platform-${i}`).value;
+  const newSleeve  = document.getElementById(`edit-sleeve-${i}`).value;
+  const newNotes   = document.getElementById(`edit-notes-${i}`).value;
+  if(!newAmount || newAmount<1){ showToast('Invalid amount','Enter a positive number','⚠'); return; }
+  const old = dcaList[i].amount;
+  dcaList[i].amount   = newAmount;
+  dcaList[i].target   = newTarget;
+  dcaList[i].day      = newDay;
+  dcaList[i].platform = newPlatform;
+  dcaList[i].sleeve   = newSleeve;
+  dcaList[i].notes    = newNotes;
   save('folio_dca', dcaList);
   renderDCA();
-  showToast(`${dcaList[i].ticker} ${dcaList[i].status==='active'?'activated':'paused'}`, 'DCA schedule updated');
+  const diff = newAmount - old;
+  showToast(`${dcaList[i].ticker} updated ✓`, `£${newAmount}/mo${diff!==0?' ('+( diff>0?'+':'')+'£'+diff+' vs before)':''}`);
+}
+
+function toggleDCAStatus(i){
+  const d = dcaList[i];
+  if(d.status==='active') d.status='paused';
+  else d.status='active';
+  save('folio_dca', dcaList);
+  renderDCA();
+  showToast(`${d.ticker} ${d.status==='active'?'resumed ▶':'paused ⏸'}`, 'Schedule updated');
+}
+
+function confirmDeleteDCA(i){
+  document.getElementById(`confirm-del-${i}`).style.display='flex';
+}
+function cancelDeleteDCA(i){
+  document.getElementById(`confirm-del-${i}`).style.display='none';
 }
 function deleteDCA(i){
   const t = dcaList[i].ticker;
@@ -814,9 +963,19 @@ function deleteDCA(i){
 }
 
 // ── RENDER WATCHLIST ─────────────────────────────────────────────
+let watchFilter = 'all';
+
+function setWatchFilter(f, el){
+  watchFilter = f;
+  document.querySelectorAll('.watch-filter-row .sort-btn').forEach(b=>b.classList.remove('active'));
+  if(el) el.classList.add('active');
+  renderWatchlist();
+}
+
 function renderWatchlist(){
-  const grid = document.getElementById('watchlist-grid');
+  const grid  = document.getElementById('watchlist-grid');
   const empty = document.getElementById('watchlist-empty');
+  const filtered = watchFilter==='all' ? watchList : watchList.filter(w=>w.conviction===watchFilter);
   document.getElementById('watch-badge').textContent = watchList.length;
   document.getElementById('watch-sub').textContent = `${watchList.length} instrument${watchList.length!==1?'s':''} under research`;
 
@@ -828,8 +987,14 @@ function renderWatchlist(){
   const convColors = {high:'var(--accent)',med:'var(--gold)',low:'var(--muted)'};
   const prioClass  = {high:'priority-high',med:'priority-med',low:'priority-low'};
 
-  grid.innerHTML = watchList.map((w,i)=>`
-    <div class="watch-card">
+  if(!filtered.length){
+    grid.innerHTML=`<div style="grid-column:1/-1;text-align:center;padding:32px;color:var(--muted);font-size:13px;font-family:var(--font-m)">No items match this filter</div>`;
+    return;
+  }
+
+  grid.innerHTML = filtered.map((w)=>{
+    const i = watchList.indexOf(w);
+    return `<div class="watch-card">
       <div class="watch-priority ${prioClass[w.conviction]||'priority-low'}"></div>
       <div class="watch-card-top">
         <div>
@@ -848,12 +1013,13 @@ function renderWatchlist(){
         <span class="watch-tag conviction" style="background:rgba(0,229,160,${w.conviction==='high'?0.15:0.06});color:${convColors[w.conviction]||'var(--muted)'}">${w.conviction?.toUpperCase()||'LOW'} conviction</span>
         ${w.alloc?`<span class="watch-tag wait">£${Number(w.alloc).toLocaleString()} planned</span>`:''}
       </div>
-      ${w.trigger?`<div style="margin-top:10px;font-size:11px;color:var(--muted);font-family:var(--font-m)">🎯 Buy trigger: ${w.trigger}</div>`:''}
+      ${w.trigger?`<div style="margin-top:10px;font-size:11px;color:var(--muted);font-family:var(--font-m)">🎯 ${w.trigger}</div>`:''}
       <div class="watch-actions">
         <button class="btn btn-primary btn-sm" onclick="promoteToDecision(${i})">→ Log as Decision</button>
         <button class="btn btn-ghost btn-sm" onclick="deleteWatch(${i})">Remove</button>
       </div>
-    </div>`).join('');
+    </div>`;
+  }).join('');
 }
 
 function deleteWatch(i){
@@ -879,13 +1045,44 @@ function promoteToDecision(i){
 }
 
 // ── RENDER DECISIONS ─────────────────────────────────────────────
+let decisionFilterType = 'all';
+
+function setDecisionFilter(type, el){
+  decisionFilterType = type;
+  document.querySelectorAll('.sort-row .sort-btn').forEach(b=>b.classList.remove('active'));
+  if(el) el.classList.add('active');
+  renderDecisions();
+}
+
 function renderDecisions(){
-  const all = [...decisionList, ...DEFAULT_DECISIONS];
+  const query   = (document.getElementById('decision-search')?.value||'').toLowerCase();
+  const allRaw  = [...decisionList, ...DEFAULT_DECISIONS];
+  const filtered = allRaw.filter(d=>{
+    const matchType = decisionFilterType==='all' || d.type===decisionFilterType;
+    const matchQ    = !query ||
+      d.ticker.toLowerCase().includes(query) ||
+      (d.thesis||'').toLowerCase().includes(query) ||
+      (d.type||'').toLowerCase().includes(query) ||
+      (d.date||'').toLowerCase().includes(query);
+    return matchType && matchQ;
+  });
+
+  const countEl = document.getElementById('decision-count');
+  if(countEl) countEl.textContent = `${filtered.length} entr${filtered.length===1?'y':'ies'}`;
+
   const list = document.getElementById('decision-list');
-  const typeIcon = {buy:'B',sell:'S',hold:'H',dca:'D',watch:'W'};
+  if(!filtered.length){
+    list.innerHTML = `<div style="text-align:center;padding:32px;color:var(--muted);font-size:13px;font-family:var(--font-m)">No decisions match your filter</div>`;
+    return;
+  }
+  const typeIcon  = {buy:'B',sell:'S',hold:'H',dca:'D',watch:'W'};
   const typeClass = {buy:'node-buy',sell:'node-sell',hold:'node-hold',dca:'node-dca',watch:'node-hold'};
-  list.innerHTML = all.map(d=>`
-    <div class="decision-item">
+
+  list.innerHTML = filtered.map((d,i)=>{
+    const isCustom = i < decisionList.length && decisionFilterType==='all' && !query;
+    const canDelete = decisionList.indexOf(d) !== -1;
+    const realIdx   = decisionList.indexOf(d);
+    return `<div class="decision-item">
       <div class="decision-node ${typeClass[d.type]||'node-hold'}">${typeIcon[d.type]||'?'}</div>
       <div class="decision-body">
         <div class="decision-header-row">
@@ -893,12 +1090,22 @@ function renderDecisions(){
           <span class="decision-type type-${d.type||'hold'}">${(d.type||'hold').toUpperCase()}</span>
           ${d.amount?`<span style="font-family:var(--font-m);font-size:11px;color:var(--accent)">${d.amount}</span>`:''}
           ${d.price?`<span style="font-family:var(--font-m);font-size:11px;color:var(--muted)">@ ${d.price}</span>`:''}
+          ${canDelete?`<button class="decision-del" onclick="deleteDecision(${realIdx},event)">✕</button>`:''}
         </div>
-        <div class="decision-rationale">${d.thesis}</div>
+        <div class="decision-rationale">${d.thesis||''}</div>
         ${d.risk?`<div class="decision-rationale" style="color:rgba(255,77,109,0.6);margin-top:4px">⚠ ${d.risk}</div>`:''}
         <div class="decision-meta"><span>${d.date}</span></div>
       </div>
-    </div>`).join('');
+    </div>`;
+  }).join('');
+}
+
+function deleteDecision(i, e){
+  e.stopPropagation();
+  decisionList.splice(i,1);
+  save('folio_decisions', decisionList);
+  renderDecisions();
+  showToast('Decision removed','Log updated');
 }
 
 // ── RENDER MONTHLY ───────────────────────────────────────────────
